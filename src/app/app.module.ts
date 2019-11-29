@@ -20,7 +20,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ParametersComponent } from './parameters/parameters.component';
-import { NewUserComponent } from './newuser/newuser.component';
+// import { NewUserComponent } from './newuser/newuser.component';
 
 import { HttpConfigInterceptor } from './interceptor/httpconfig.interceptor';
 import { MinionDetailComponent } from './minion-detail/minion-detail.component';
@@ -63,7 +63,7 @@ defineLocale('en-gb', enGbLocale);
     CustomMinDirective,
     CustomMaxDirective,
     ResetPasswordComponent,
-    NewUserComponent,
+    // NewUserComponent,
     CarouselComponent
   ],
   imports: [

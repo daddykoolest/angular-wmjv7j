@@ -18,7 +18,7 @@ import { ScheduleComponent } from './schedule/schedule.component';
 import { MinionDetailComponent } from './minion-detail/minion-detail.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { NewUserComponent } from './newuser/newuser.component';
+// import { NewUserComponent } from './newuser/newuser.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent, canActivate: [RoleGuard]},
