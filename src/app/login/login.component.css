@@ -1,0 +1,154 @@
+.container {
+    padding-top: 15%;
+    padding-bottom: 40px;
+  }
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: 10px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.form-signin a {
+    color: #169DD2;
+}
+
+.form-signin a:hover {
+    color: #253C5A;
+}
+
+.logo {
+  width: 164px;
+    position: relative;
+    float: right;
+    margin-right: 0;
+    margin-top: 10px;
+}
+
+.pattern {
+  background-image: url(/assets/covetrus-pattern.png) !important;
+    background-repeat: no-repeat;
+    background-position: left;
+    background-position-y: 164px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -100;
+}
+
+.branding {
+  position: absolute;
+  right: 0;
+  z-index: -100;
+}
+
+.login {
+  position: relative;
+  padding-top: 150px;
+  margin-left: auto;
+}
+
+.login h1 {
+  font-family: georgia;
+  font-size: 3.2rem;
+  width: 400px;
+  color: #54565A;
+  color: var(--text-gray);
+  margin-left: -48px;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.login h4 {
+  color: #ed3030;
+  color: var(--coral-red);
+  margin-bottom: 30px;
+}
+
+.login p {
+  font-size: 1.1rem;
+    text-align: left;
+    margin-bottom: 9px !important;
+}
+
+.material-icons.smart {
+  width: 40px; height: 33px; font-size: 31px; vertical-align: text-bottom;
+}
+
+@media (max-width: 575px) {
+.logo {
+  position: relative;
+  top: 0;
+  text-align: center;
+  vertical-align: top;
+}
+
+.login {
+  margin-left: auto;
+}
+.pattern {
+  background-position-x: 26%;
+}
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+.login {
+  margin-left: auto;
+}
+.pattern {
+  background-position-x: 26%;
+}
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .login {
+    margin-left: auto;
+  }
+  .pattern {
+    background-position-x: 26%;
+  }
+}
+  
+@media (min-width: 992px) and (max-width: 1199px) {
+  .login {
+    position: absolute;
+    left: 67px;
+  }  
+  .pattern {
+    background-position-x: 10%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .login {
+    position: absolute;
+    left: 56px;
+  }
+}

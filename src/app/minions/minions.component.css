@@ -1,0 +1,195 @@
+h1 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 3.5rem;
+}
+
+p#minionTotal {
+    font-size: 1.3rem;
+    text-align: left;
+}
+
+#minionFiltersMobile {
+    display: none;
+}
+
+.form-control.icon {
+    color: #263549;
+}
+
+.icon span > .material-icons:hover, .icon span > .material-icons:active, .icon span > .material-icons:focus,
+    .icon span > .material-icons.selected {
+    background-color: #e0e0ee;
+    height: auto;
+    border-radius: 50%;
+}
+
+.list-group.list-group-horizontal > .list-group-item {
+    padding: 0px;
+    border: 0px;
+}
+
+.minion-status-icon {
+    height: 1.2em;
+    width: 1.2em;
+    border-radius: 50%;
+    display: inline-block;
+    margin: -3px 3px 0px 0px;
+}
+
+.minion-row.selected {
+    background-color: #e0e0ee;
+}
+
+.minion-row.selected td {
+    border-color: #fff;
+}
+
+
+.minion-row:hover {
+    cursor: pointer;
+}
+
+#minionResults, #minionResultsGrid {
+    height: 44vh;
+    overflow-x: hidden;
+    margin-bottom: 10px;
+}
+
+#minionResultsGrid > .btn {
+    width: 19%;
+    height: 100px;
+    border-radius: .25rem;
+    color: #FFF;
+    line-height: 1;
+}
+
+#minionResultsGrid > .btn.selected {
+    background-color: #149E83;
+}
+
+.hidden {
+    display: none;
+}
+
+#toggleMinions {
+    float: right;
+    bottom: 0;
+    position: absolute;
+    right: 12%;
+}
+
+#toggleMinions .material-icons {
+    bottom: 7px;
+    position: absolute;
+    cursor: pointer;
+}
+
+.material-icons:hover {
+    color: #253C5A;
+    cursor: pointer;
+}
+
+#minionResults th.th-sm.d-none.d-md-table-cell {
+    width: calc(100%/6);
+}
+
+
+
+
+@media (min-width: 1025px){
+    #filtersSection {
+        display: flex;
+    }
+}
+
+@media (max-width: 1024px) {
+
+    .minion-row:hover {
+        background-color: #FFF;
+    }
+
+    .minion-row.selected {
+        background-color: #e0e0ee;
+    }
+    
+    #toggleMinions {
+        position: relative;
+        right: 12%;
+    }
+
+    .minion-status-icon {
+        height: 1.2em;
+        width: 1.2em;
+    }
+
+    .col-9 {
+        max-width: 70%;
+    }
+     
+    .btn-link {
+        padding-left: 0px;
+        padding-top: 0px;
+    }
+
+    .btn-block:not(:disabled) {
+        background-color: #149E83;
+        border: #149E83;
+    }
+
+    .btn-block:not(:disabled):active {
+        background-color: #25C4A4;
+    }
+
+    #viewGridToggle {
+        display: none;
+    }
+
+   #minionSort {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+
+   #filtersSection .col-8, #filtersSection .col-3, #filtersSection .col-6, #filtersSection .col-4, 
+    #minionFilters .col-8 {
+       flex: 0 0 100%;
+       max-width: 100%;
+   } 
+
+   #filtersSection .btn {
+    width: 100%;
+    margin-top: 5px;
+   }
+
+   .list-group.list-group-horizontal > .list-group-item {
+    width: 100%;
+    }
+
+    .list-group.list-group-horizontal {
+        flex-direction: column;
+    }
+
+    #filterValueInput {
+        margin-top: .25rem!important; 
+    }
+}
+
+
+@media (max-width: 575px) {
+    p#minionTotal {text-align: center;}
+        }
+    
+    @media (min-width: 576px) and (max-width: 767px) {
+        p#minionTotal {text-align: center;}
+    }
+    
+    @media (min-width: 768px) and (max-width: 991px) {
+        p#minionTotal {text-align: center;}
+    }
+    
+    @media (min-width: 992px) and (max-width: 1199px) {
+        p#minionTotal {text-align: left;}
+    }
+    
+    @media (min-width: 1200px) {
+        p#minionTotal {text-align: left;}
+    }

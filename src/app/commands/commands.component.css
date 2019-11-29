@@ -1,0 +1,18 @@
+.btn {
+    width: 19%;
+    height: 50px;
+    border-radius: .25rem;
+}
+
+.selected-command {
+    color: #e7ebf1 !important; 
+    background-color: #034b55; 
+    border-color: #515353;;
+  }
+
+
+@media (max-width: 1024px) {
+    .btn {
+    width: 100%;
+    }
+}

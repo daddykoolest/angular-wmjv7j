@@ -1,0 +1,113 @@
+<div class="container spaced p-0" id="minionFilters">
+  <p id="minionTotal" *ngIf="this.router.url === '/create-command'; else minionsOnly">{{this.noMinionsAvailable}} Minions Available - {{this.noMinionsSelected}} Selected</p>
+  <ng-template #minionsOnly><h1 class="text-center mt-5 mb-3">Minions</h1>
+  <p id="minionTotal">{{this.noMinionsAvailable}} Minions available</p>
+  </ng-template>
+  <!-- <app-total-display></app-total-display> -->
+<div class="row">
+<div class="col-9">
+  <div class="row">
+   <div class="mobile-only col">
+      <button role="button" class="btn btn-link" id="toggleFilters" (click)="this.filtersIsCollapsed = !this.filtersIsCollapsed"
+      [attr.aria-expanded]="!this.filtersIsCollapsed" aria-controls="filtersSection">Filters...</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <label class="font-weight-light" *ngIf="filters.length > 0">Filter(s) Applied:</label>
+          <ul class="list-group list-group-horizontal">
+            <li *ngFor="let filter of filters" class="list-group-item">
+              <span (click)="removeFilter(filter.filterName)"><i class="material-icons float-left">close</i></span>
+                {{filter.filterDisplayName}}: {{filter.filterValue}}
+            </li> 
+          </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="row" id="filtersSection" [ngbCollapse]="this.filtersIsCollapsed">
+<div class="col-8">
+  <span>Add filter:</span>
+    <div class="form-row mb-3">
+
+      <div class="col-3">
+        <select #filterSelect class="form-control" id="filterSelectList" (change)="enableAddBtn();showStatusOptions(filterSelect.value);">
+          <option selected disabled hidden value="0">Filters...</option>
+          <option *ngFor="let option of filterValueList" value="{{option.filterTypeValue}}">{{option.filterTypeName}}</option>
+        </select>
+      </div>
+
+      <div class="col-3">
+        <input type="text" class="form-control" #filterValue id="filterValueInput" placeholder="Value" [(ngModel)]="filterInput" name="filterInput" (input)="enableAddBtn()">
+        <div class="form-group mt-2" style="display: none;" id="sortOptionList">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="cbStatusRed" name="statusOption" value="Red" (change)="enableAddBtn();"> 
+            <label class="form-check-label" for="cbStatusRed">Red</label>
+          </div>  
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="cbStatusAmber" name="statusOption" value="Amber" (change)="enableAddBtn();"> 
+            <label class="form-check-label" for="cbStatusAmber">Amber</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="cbStatusGreen" name="statusOption" value="Green" (input)="enableAddBtn();"> 
+            <label class="form-check-label" for="cbStatusGreen">Green</label>
+          </div>
+        </div>
+      </div>
+          
+      <div class="col-3">
+        <button type="button" id="btnAddFilter" class="btn btn-info mr-2" disabled (click)="getMinions(filterSelect.options[filterSelect.selectedIndex].text,filterSelect.value,filterValue.value,sortBySelect.value)">Add filter</button>
+      </div>
+      <div class="col-3" id="minionSort">
+        <select #sortBySelect class="form-control"  id="sortSelectList" (change)="getMinions(filterSelect.id,filterSelect.value,filterValue.value,sortBySelect.value)">
+          <option *ngFor="let sortOption of sortValueList" value="{{sortOption.sortTypeValue}}">{{sortOption.sortTypeName}}</option>
+        </select>
+      </div>
+    </div>
+  </div>  
+
+    <div class="col-4">
+      <div *ngIf="this.router.url === '/create-command'" id="toggleMinions" (click)="toggleMinions()">
+        <span class="align-middle">
+          <button type="button" class="btn btn-link">Select/Deselect all</button>
+          <i class="material-icons" *ngIf="this.minionsAllSelected === true">indeterminate_check_box</i>
+          <i class="material-icons" *ngIf="this.minionsAllSelected === false">add_box</i>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="minionResults" *ngIf="this.minionsDisplayGrid === false">
+
+  <table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th class="th-sm">Status</th>
+          <th class="th-sm">Site ID</th>
+          <th class="th-sm">Site Name</th>
+          <th class="th-sm">Minion Version</th>
+          <th class="th-sm d-none d-md-table-cell">PIMS Name</th>
+          <th class="th-sm d-none d-md-table-cell">PIMS Version</th>
+          <th class="th-sm" *ngIf="this.router.url === '/create-command'">Select</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="minion-{{minion.MinionId}}" [attr.data-minion-id]="minion.MinionId" *ngFor="let minion of minions" class="pt-2 pb-2 minion-row" style="cursor: pointer;" (click)="toggleMinion(minion.MinionId, minion.SiteName)">
+          <td><span class="minion-status-icon align-middle {{minion.Status}}"></span></td>
+          <td>{{minion.SiteId}}</td>
+          <td>{{minion.SiteName}}</td>
+          <td>{{minion.MinionVersion}}</td>
+          <td class="d-none d-md-table-cell">
+            <div *ngFor="let appMetirics of minion.ApplicationMetrics"> {{appMetirics.PIMSName}}<br/></div>
+          </td>
+          <td class="d-none d-md-table-cell"> <div *ngFor="let appMetirics of minion.ApplicationMetrics"> {{appMetirics.PIMSVersion}}<br/></div></td>
+          <td *ngIf="this.router.url === '/create-command'"><span ><i id="minionToggle-{{minion.MinionId}}" class="material-icons float-right">add_box</i></span></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>

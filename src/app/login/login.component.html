@@ -1,0 +1,32 @@
+<div class="container-fluid branding"><img class="logo" src="assets/covetrus_logo_rgb.png"></div>
+<div class="container text-center login">
+<form [formGroup]="userlogin" (ngSubmit)="onClickSubmit()" class="form-signin">
+    <h1 class="h3 mb-5 font-weight-normal">Covetrus Estate Manager</h1>
+  <!-- <h4 class="login-error"></h4> -->
+
+  <div style="margin-top: 20px; margin-bottom: 30px; display: none; text-align: left;" class="alert alert-danger alert-dismissible fade show" role="alert" >
+    <!-- <h4 class="alert-heading">
+        <mat-icon class="material-icons smart" role="img" aria-hidden="true">report_problem</mat-icon>Warning</h4>
+        <hr> -->
+        <mat-icon class="material-icons smart" role="img" aria-hidden="true" style="float: left; margin-right: 14px;">report_problem</mat-icon>
+   <div class="login-error"></div>
+  </div>
+
+    <p class="h3 mb-4 font-weight-normal">Please sign in</p>
+    <div class="input-group">
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" formControlName="email" required autofocus>
+        <div class="input-group-append" style="display: none;">
+            <span class="input-group-text" id="basic-addon2">@covetrus.com</span>
+        </div>
+    </div>
+    <label for="inputPassword" class="input-password-link" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="password" required>
+    <div class="checkbox mb-5 forgot-remember">
+        <a class="float-left forgot-password" (click)="onClickForgotten()">Forgot password?</a>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block btn-login" type="submit">Sign in</button>
+  
+  </form>
+</div>
+<div class="container-fluid pattern"></div>

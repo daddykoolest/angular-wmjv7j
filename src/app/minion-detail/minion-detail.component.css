@@ -1,0 +1,115 @@
+.alert-undefined {
+  color: white;
+  background-color: rgb(42, 143, 67);
+  margin-top: 30px !important;
+  border-color: rgb(42, 143, 67);
+}
+
+.page-header {
+  color: white;
+  background-color: rgb(42, 143, 67);
+  margin-top: 30px !important;
+  border-color: rgb(42, 143, 67);
+  position: relative;
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+}
+
+
+input:disabled {
+  color: rgb(84, 84, 84);
+  cursor: default;
+  background-color: #dee2e6;
+  border: none;
+}
+
+input:enabled {
+  border: 1px solid #c0c7ce;
+}
+
+input:focus {
+  background: white;
+}
+
+.material-icons.smart {
+  width: 40px; height: 33px; font-size: 31px; vertical-align: text-bottom;
+}
+
+
+.minion-status-icon {
+  height: 1.2em;
+  width: 1.2em;
+  border-radius: 50%;
+  display: inline-block;
+  margin: -3px 3px 0px 0px;
+}
+
+#back, #cancel, #edit, #new, #save {
+  width:50%;
+  display: inline-block;
+}
+
+#cancel, #edit, #save {
+  margin-top: 0;
+}
+
+#save, #cancel, .alert {
+  display: none;
+}
+
+.first-col {
+  width: 33%;
+}
+
+.mat-expansion-panel-body + .parameters {
+  margin: -24px !important;
+  margin-bottom: 0 !important;
+}
+
+.schedule {margin-top: 30px;}
+.enclosing-div {max-height: 300px; overflow: auto; margin: 0px -24px 8px -24px;}                
+.minions {margin: 30px 10px 20px 24px;}
+.parameters {margin-left: -24px; margin-right: -24px; margin-bottom: 0;}
+
+.PIMS {
+  margin-left: 21px;
+  margin-right: 24px;
+}
+
+::ng-deep .ng-animating div mat-accordion mat-expansion-panel mat-expansion-panel-header {
+  height: 48px;
+}
+::ng-deep .ng-animating div mat-accordion mat-expansion-panel div.mat-expansion-panel-content {
+  height: 0px;
+  visibility: hidden;
+}
+
+.container.scroll {
+  max-height: 10vh;
+  overflow: auto;
+  padding-left: unset;
+  padding-right: unset;
+  padding-bottom: 0;
+  }
+
+  .mat-expansion-panel-content,  .mat-expansion-panel-body {
+    font: unset !important;
+  }
+
+@media (max-width: 575px) {
+  .first-col {
+    width: 50%;
+  }
+}
+
+
+  @media (min-width: 576px){
+#minionResults {
+    height: 49vh;
+    overflow-x: hidden;
+    margin-bottom: 10px;
+}
+
+}

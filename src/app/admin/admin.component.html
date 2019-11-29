@@ -1,0 +1,12 @@
+<div class="container spaced">
+<p>
+  List of users will go here.
+</p>
+<div>
+  <button type="button" (click)="showNewUser()">Add New User</button>
+</div>
+
+
+<app-newuser *ngIf="this.canShowNewUser"></app-newuser>
+
+</div>

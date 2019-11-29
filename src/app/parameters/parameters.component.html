@@ -1,0 +1,153 @@
+<ng-template #required>
+        <span class="text-danger">*</span>
+</ng-template>
+
+<ng-template #required2>
+        <p class="ISrequired">All fields marked with an asterisk<span class="text-danger">*</span> are required.</p>
+    </ng-template>
+
+
+<div class="container spaced scroll">
+
+        <!-- sets columns according amount of number of commands -->
+        <ng-container *ngIf="commandTypes.length === 1; then one;"></ng-container>
+        <ng-container *ngIf="commandTypes.length === 2; then two;"></ng-container>
+        <ng-container *ngIf="commandTypes.length > 2; then three"></ng-container>
+
+            <ng-template #one>
+                <form class="card-columns one" autocomplete="new-password">
+                    <ng-container *ngTemplateOutlet="columns"></ng-container> 
+                </form>
+            </ng-template>
+            
+            <ng-template #two>
+                <form class="card-columns two" autocomplete="new-password">
+                    <ng-container *ngTemplateOutlet="columns"></ng-container> 
+                </form>
+            </ng-template>
+
+            <ng-template #three>
+                    <form class="card-columns three" autocomplete="new-password">
+                        <ng-container *ngTemplateOutlet="columns"></ng-container> 
+                    </form>
+                </ng-template>
+    
+
+<ng-template #columns>
+    <fieldset class="form-group card" *ngFor="let commandType of commandTypes">
+        <legend>{{commandType.Name}}</legend>
+
+            <!-- no parameters -->
+        <ng-container class="no-params" *ngIf="commandType.DefaultParameters.length < 1; then empty"></ng-container>
+            <ng-template #empty>
+                <p>There are no parameters to set in this command.</p>
+            </ng-template>
+
+            
+            <!-- sets main components of the form -->
+            <ng-template #components>
+                    <div class="form-group {{parameter.item.dataType}}" *ngFor="let parameter of commandType.DefaultParameters" [ngSwitch] = "parameter.item.fieldType">
+                        <ng-template [ngSwitchCase] = "'Checkbox'">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="{{parameter.name}}" [(ngModel)]="parameter.value" [disabled]="disableElements()" (change)="_onParamOptionsChange($event, parameter)"/>
+                                    <label class="check" for="{{parameter.commandTypeName}}" data-toggle="tooltip" title="{{parameter.name}}"><ng-container *ngIf="parameter.item.required === 'True'; then required"></ng-container> {{parameter.item.displayName}}</label>
+                                </div>
+                            </ng-template>
+                            <ng-template [ngSwitchCase] = "'List'">
+                                <label for="{{parameter.commandTypeName}}" data-toggle="tooltip" title="{{parameter.name}}"><ng-container *ngIf="parameter.item.required === 'True'; then required"></ng-container> {{parameter.item.displayName}}</label>
+                                <select id="{{parameter.name}}" (change)="_onParamOptionsChange($event, parameter)" class="form-control" [disabled]="disableElements()" [(ngModel)]="parameter.value" name="{{parameter.name}}">
+                                    <option [ngValue]="undefined" disabled>Choose...</option>
+                                    <option *ngFor="let parameter of parameter.item.dropdown;" [value]="parameter" [selected]="parameter===parameter.value">{{parameter}}</option>
+                                </select>
+                            </ng-template>
+                            <ng-template [ngSwitchCase] = "'Password'">
+                                <label for="{{parameter.commandTypeName}}" data-toggle="tooltip" title="{{parameter.name}}"><ng-container *ngIf="parameter.item.required === 'True'; then required"></ng-container> {{parameter.item.displayName}}</label>
+                                <input type="{{parameter.item.dataType}}" id="{{parameter.name}}" [(ngModel)]="parameter.value" (focusout)="_onInputMouseOut($event, parameter)" class="form-control" [disabled]="disableElements()" name="{{parameter.name}}" data-toggle="tooltip" title="{{parameter.item.dataType}}" placeholder="{{parameter.item.suggestedInput}}" autocomplete="new-password">
+                            </ng-template>
+                            <ng-template [ngSwitchCase] = "'Number'">
+                                <label for="{{parameter.commandTypeName}}" data-toggle="tooltip" title="{{parameter.name}}"><ng-container *ngIf="parameter.item.required === 'True'; then required"></ng-container> {{parameter.item.displayName}}</label>
+                                <input type="{{parameter.item.dataType}}" id="{{parameter.name}}" [(ngModel)]="parameter.value" (focusout)="_onInputMouseOut($event, parameter)" class="form-control" [disabled]="disableElements()" name="{{parameter.name}}" data-toggle="tooltip" title="{{parameter.item.dataType}}" placeholder="{{parameter.item.suggestedInput}}" autocomplete="new-password">
+                            </ng-template>
+                            <ng-template [ngSwitchCase] = "'LongString'">
+                                <label for="{{parameter.commandTypeName}}" data-toggle="tooltip" title="{{parameter.name}}"><ng-container *ngIf="parameter.item.required === 'True'; then required"></ng-container> {{parameter.item.displayName}}</label>
+                                <input type="text" id="{{parameter.name}}" [(ngModel)]="parameter.value" (focusout)="_onInputMouseOut($event, parameter)" class="form-control" [disabled]="disableElements()" name="{{parameter.name}}" data-toggle="tooltip" title="{{parameter.item.dataType}}" placeholder="{{parameter.item.suggestedInput}}"  autocomplete="new-password">
+                            </ng-template>
+                            <ng-template [ngSwitchCase] = "'ShortString'">
+                                <label for="{{parameter.commandTypeName}}" data-toggle="tooltip" title="{{parameter.name}}"><ng-container *ngIf="parameter.item.required === 'True'; then required"></ng-container> {{parameter.item.displayName}}</label>
+                                <input type="text" id="{{parameter.name}}" [(ngModel)]="parameter.value" (focusout)="_onInputMouseOut($event, parameter)" class="form-control" [disabled]="disableElements()" name="{{parameter.name}}" data-toggle="tooltip" title="{{parameter.item.dataType}}" placeholder="{{parameter.item.suggestedInput}}"  autocomplete="new-password">
+                            </ng-template>
+                            <ng-template [ngSwitchCase] = "'FilePath'">
+                                <label for="{{parameter.commandTypeName}}" data-toggle="tooltip" title="{{parameter.name}}"><ng-container *ngIf="parameter.item.required === 'True'; then required"></ng-container> {{parameter.item.displayName}}</label>
+                                <input type="text" id="{{parameter.name}}" [(ngModel)]="parameter.value" (focusout)="_onInputMouseOut($event, parameter)" class="form-control filePath" [disabled]="disableElements()" name="{{parameter.name}}" data-toggle="tooltip" title="{{parameter.item.dataType}}" placeholder="{{parameter.item.suggestedInput}}" autocomplete="new-password">
+                            </ng-template> 
+                        </div>
+                </ng-template>
+
+                <!-- sets columns within command group according to number of parameters, display components -->
+                <ng-template #main>
+                    <ng-container *ngIf="commandType.DefaultParameters.length === 1; then one; else two"></ng-container>
+
+                    <ng-template #one>
+                        <div class="inner-grid one">
+                            <ng-container *ngTemplateOutlet="components"></ng-container> 
+                        </div>
+                    </ng-template>
+
+                    <ng-template #two>
+                        <div class="inner-grid">
+                            <ng-container *ngTemplateOutlet="components"></ng-container>
+                        </div>
+                    </ng-template>
+
+                </ng-template>
+
+                <!-- displays main content -->
+                <ng-container *ngTemplateOutlet="main"></ng-container>
+        
+                <!-- only show schedule form if required -->
+                <div class="inner-grid" *ngIf="commandType.ScheduleRequired">
+                    <div class="form-group ">
+                        <label for="dt{{commandType.Name}}RunUntilDate">Run until date:</label>
+                        <input type="text" placeholder="dd-mm-yyyy" class="form-control" bsDatepicker [(ngModel)]="commandType.RunUntilDate" name="runUntilDate" (ngModelChange)="_onRunUntilDateChanged($event)"
+                        [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', adaptivePosition: true, isAnimated: true, containerClass: 'theme-dark-blue', showWeekNumbers: new-password }" [minDate]="minDate" required [disabled]="disableElements()">
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="{{commandTypeName}}Interval">Interval</label>
+                        <div class="input-group">
+                            <input class="form-control" type="number" pattern="[0-9]*" placeholder="00" #theInterval="ngModel" id="{{commandType.Name}}Interval" (focusout)="_onIntervalMouseOut($event, commandType)" [(ngModel)]="commandType.Interval" name="{{commandType.Name}}Interval" [disabled]="disableElements()" [min]="intervalMin" [max]="intervalMax">
+                            <select (change)="_onIntervalTypeChange($event)" class="input-group-addon" [disabled]="disableElements()" name="{{commandType.Name}}IntervalUnits" [(ngModel)]="commandType.IntervalUnits">
+                                <option value="500000">mins</option>
+                                <option value="8700">hours</option>
+                                <option value="366">days</option>
+                                <option value="52">weeks</option>
+                            </select>
+                        <div *ngIf="theInterval.errors; then myError"></div>	 
+                        <ng-template #myError>Number must be between {{intervalMin}} and {{intervalMax}}.</ng-template>
+                        </div>
+                    </div>
+                    
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="{{commandType.Name}}ExcludeWeekends" [(ngModel)]="commandType.ExcludeWeekends" [disabled]="disableElements()" (change)="_onExWeekendesChange($event, commandType)"/>
+                        <label for="{{commandType.Name}}ExcludeWeekends">Exclude Weekends</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="{{commandType.Name}}CoreHoursOnly" [(ngModel)]="commandType.CoreHoursOnly" [disabled]="disableElements()" (change)="_onCoreHoursChange($event, commandType)"/>
+                        <label for="{{commandType.Name}}CoreHoursOnly">Core hours only</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="{{commandType.Name}}WhileStatus">Only while result is</label>
+                    <select class="form-control" name="{{commandType.Name}}WhileStatus" [(ngModel)]="commandType.WhileStatus" [disabled]="disableElements()" (change)="_onStatusChange($event, commandType)">
+                        <option value="0">Any status</option>
+                        <option value="1">Green</option>
+                        <option value="2">Amber</option>
+                        <option value="3">Red</option>
+                    </select>
+                </div>
+            </div>
+        </fieldset>
+    </ng-template>
+
+</div>

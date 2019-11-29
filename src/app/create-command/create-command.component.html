@@ -1,0 +1,182 @@
+<div class="container spaced p-0">
+
+  <div class="continue-command" *ngIf="showSplash() === true">
+    <h2>You have been here before. What would you like to do?</h2>
+    <button type="button" class="btn btn-danger" (click)="startOver()"><< Start New</button>
+    <button type="button" class="btn btn-info" (click)="continueCommand()">Continue >></button>
+  </div>
+
+  <div *ngIf="showSplash() === false">
+    <mat-horizontal-stepper [linear]="isLinear" #stepper (selectionChange)="stepChange($event)">
+      <mat-step [stepControl]="commnadFormGroup">
+        <form [formGroup]="commnadFormGroup">
+          <ng-template matStepLabel>{{commandStepLabel}}</ng-template>
+          <p>
+              <ngb-alert [type]="info" [dismissible]="false">
+                <h5>{{commandStepLabel}}</h5> 
+              </ngb-alert>
+            </p>
+            <app-commands (messageEvent1)='commandSelected($event)' ></app-commands>
+          <div class="minions-next-back">
+            <button style="width: 100% !important;" matStepperNext (click)="goForward()" class="btn btn-block btn-info next-btn" disabled="true" id="firstStepNextBtn">Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="minionFormGroup">
+        <div  >
+          <form [formGroup]="minionFormGroup">
+            <div class="minions-step">
+              <ng-template matStepLabel>{{minionStepLabel}}</ng-template>
+
+              <p>
+                  <ngb-alert [type]="info" [dismissible]="false">
+                    <h5>{{minionStepLabel}}</h5> 
+                  </ngb-alert>
+                </p>
+                              <div class="minion-list">
+                <app-minions (messageEvent2)='minionSelected($event)' ></app-minions>
+              </div>
+              <div class="minions-next-back">
+                <button matStepperPrevious (click)="goBack()" class="btn btn-block btn-danger">Back</button>
+                <button matStepperNext (click)="goForward()" class="btn btn-block btn-info next-btn" disabled="true" id="secondStepNextBtn">Next</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </mat-step>
+      <mat-step [stepControl]="parameterFormGroup">
+        <form [formGroup]="parameterFormGroup">
+          <ng-template matStepLabel>{{parameterStepLabel}}</ng-template>
+          <div *ngIf="currentStep() === '2'">
+              <p>
+                  <ngb-alert [type]="info" [dismissible]="false">
+                    <h5>{{parameterStepLabel}}</h5> 
+                  </ngb-alert>
+                </p>
+
+            <app-parameters></app-parameters>
+          </div>
+          <div class="minions-next-back">
+            <button matStepperPrevious (click)="goBack()" class="btn btn-block btn-danger">Back</button>
+            <button matStepperNext (click)="goForward()" class="btn btn-block btn-info next-btn">Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="createFormGroup">
+        
+        <form [formGroup]="createFormGroup" name="commandParameters" #scheduleForm="ngForm" (ngSubmit)="createCommand()" >
+          <ng-template matStepLabel>Create Command</ng-template>
+          <div class="reminder" *ngIf="currentStep() === '3'">
+        <div class="container schedule">
+       
+            <p>
+              <ngb-alert [type]="info" [dismissible]="false">
+                <h5>Create command</h5> 
+              </ngb-alert>
+            </p>
+
+            <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    Command selected
+                </mat-expansion-panel-header>
+                <mat-divider></mat-divider>
+                <div class="enclosing-div">
+                <div class="minions card-columns three">
+                    {{commandStepLabel}}    
+                </div>
+              </div>
+              </mat-expansion-panel>
+
+
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                 {{minionStepLabel}}
+                </mat-expansion-panel-header>
+                <mat-divider></mat-divider>
+                <div class="enclosing-div">                  
+                  <div class="minions card-columns three">
+                    {{minionNames}}
+                </div></div>
+
+              </mat-expansion-panel>
+            
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  Parameters set
+                </mat-expansion-panel-header>
+                <div class="parameters">
+                    <mat-divider></mat-divider>
+                  <app-parameters></app-parameters>
+                </div>            
+              </mat-expansion-panel>
+            
+            </mat-accordion>
+
+
+
+        <div class="container" style="margin-top: 20px;">
+          <div class="card-columns two">
+           <fieldset class="form-group card">
+              <legend>Schedule</legend>
+              <div class="inner-grid">
+                <div class="form-group">
+                  <label for="dtScheduledDate">Scheduled date:</label>
+                    <input  type="text" 
+                            placeholder="dd-mm-yyyy" 
+                            class="form-control" 
+                            bsDatepicker [(ngModel)]="scheduledDate" 
+                            [ngModelOptions]="{standalone: true}"
+                            [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', adaptivePosition: true, isAnimated: true, containerClass: 'theme-dark-blue', showWeekNumbers: false }" 
+                            required [disabled]="showSubmit() === 'false'" 
+                            [minDate]="minDate"> 
+                </div>
+
+                <div class="form-group">
+                  <label for="dtScheduledTime">Scheduled time:</label>
+                    <div class="time">
+                      <timepicker name="scheduledTime" 
+                            [(ngModel)]="scheduledDate" 
+                            [ngModelOptions]="{standalone: true}" 
+                            [minuteStep]="15" 
+                            [showSpinners]="hideSpinners" 
+                            required [disabled]="showSubmit() === 'false'"></timepicker>
+                    </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+
+</div>
+
+      </div>
+
+      <div class="minions-next-back">
+        <button  matStepperPrevious (click)="goBack()" class="btn btn-block btn-danger">Back</button>
+        <button type="submit" matStepperNext [disabled]="disableElements()" class="btn btn-block btn-warning create-btn">Create Schedule</button>
+      </div>
+
+
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <div class="spinner-border text-info m-3" role="status" *ngIf="result.ResultStatus === false && result.ResultErrors.length === 0">
+          <span class="sr-only">Scheduling command...</span>
+      </div>
+
+      <div style="margin-top: 20px;" class="alert {{result.ResultClass}} alert-dismissible fade show" role="alert" *ngIf="result.ResultStatus === true || result.ResultErrors.length > 0">
+        <h4 class="alert-heading">
+            <mat-icon class="material-icons smart" role="img" aria-hidden="true">{{result.ResultIcon}}</mat-icon>{{result.ResultHeader}}</h4>
+        <hr>
+        {{result.ResultMessage}}.
+        <div *ngFor="let error of result.ResultErrors">{{error}}.</div>
+      </div>
+
+      <div class="minions-next-back">
+        <button (click)="startOver(); stepper.reset()" class="btn btn-block btn-warning create-btn">Create New Schedule</button>
+        <button routerLink="/" routerLinkActive="active" (click)="goHome()" class="btn btn-block btn-info next-btn">Home</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>

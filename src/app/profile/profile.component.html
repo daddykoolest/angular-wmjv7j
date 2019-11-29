@@ -1,0 +1,80 @@
+<div class="container spaced">
+<form class="profile-form" [formGroup]="personalDetails">
+  <div class="container">
+  <div class="form-group ">
+    <div id="personal-details-section" class="directly-editable-inputs card card-body">
+        <div class="form-group input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="material-icons">person</i></span>
+          </div>
+          <input type="text" id="firstName" placeholder="First name" class="form-control" formControlName="firstName" value="{{userDetail.FirstName}}" onclick="this.select();" (keyup)="firstnameValidate()">
+          <input type="text" id="lastName" placeholder="Surname" class="form-control" formControlName="lastName" value="{{userDetail.Surname}}" onclick="this.select();" (keyup)="lastnameValidate()">
+        </div>
+        <div class='first-name-error'>
+          <div id="first-name-required">First name is required</div>
+          <div id="first-name-invalid">First name cannot contain numbers or special characters</div>
+        </div>
+        <div class='last-name-error'>
+          <div id="last-name-required">Surname is required</div>
+          <div id="last-name-invalid">Surname cannot contain numbers or special characters</div>
+        </div>
+        <div class="user-detail form-group input-group">
+          <div class="input-group-prepend" >
+            <span class="input-group-text"><i class="material-icons">mail</i></span>
+          </div>
+          <input type="text" id="emailAddress" class="form-control" value="{{emailAddress}}" (click)="collapseEmailAlert()" readonly="readonly" />
+        </div>
+        <div class="alert alert-info email-alert" role="alert">
+            Please contact a DevOps member of the team if you need to change your email address.
+        </div>
+        <div class="user-detail form-group input-group">
+          <div class="input-group-prepend" >
+            <span class="input-group-text"><i class="material-icons">group</i></span>
+          </div>
+          <input type="text" id="user-role" class="form-control" value="{{role}}" (click)="collapseAccessAlert()" readonly="readonly" />
+        </div>
+        <div class="alert alert-info access-alert" role="alert">
+            <div *ngIf="this.role !== 'DevOps'">Please contact a DevOps member of the team if you need to change your role.</div>
+            <div *ngIf="this.role === 'DevOps'">Changing role cannot be done from this page, please amend in the database for now.</div>
+          </div>
+        <div class="form-label-group form-group input-group">
+          <div class="input-group-prepend" >
+            <span class="input-group-text"><i class="material-icons">phone</i></span>
+          </div>
+          <input type="text" id="mobileNumber" class="form-control" formControlName="mobileNumber" value="{{userDetail.Mobile}}" onclick="this.select();" (keyup)="mobileNumberValidate()">
+        </div>
+        <div class='mobile-number-error'>There was an issue with the mobile number entered, please check there are no spaces or brackets.</div>
+        <button class="btn btn-info profile-btn" type="button" (click)="triggerUpdate()">
+          Save user
+        </button>
+    </div>
+  </div>
+  <div class="change-password-section">
+  <button class="btn btn-link change-password-button" type="button" (click)="collapseChangePassword()">
+    Change password
+  </button>
+  <div id="change-password-collapse">
+    <div class="card card-body">
+      <div class="form-label-group">
+        <label for="oldPassword">Old Password</label>
+        <input type="password" id="oldPassword" class="form-control" formControlName="oldPassword">
+      </div>
+      <div class="form-label-group">
+        <label for="newPassword">New Password</label>
+        <input type="password" id="newPassword" class="form-control" formControlName="newPassword">
+      </div>
+      <div class="form-label-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" class="form-control" formControlName="confirmPassword">
+      </div>
+      <button class="btn btn-info profile-btn" type="button" (click)="triggerUpdatePassword()">
+        Update Password
+      </button>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
+  <div class="alert alert-info result-alert" role="alert">{{saveResult}}</div>
+</div>
+</form>
+</div>

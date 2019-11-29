@@ -1,0 +1,4 @@
+.sidenav a.nav-link.active, .sidenav a.nav-link.logout {
+    color: #021660 !important;
+    color: var(--midnight-blue) !important;
+  }

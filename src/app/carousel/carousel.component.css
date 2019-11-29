@@ -1,0 +1,119 @@
+.total-minions{
+    color:#263549;
+}
+
+i {
+    font-size: 5em;
+}
+.erroricon{
+    color: #d52003;
+    text-align: center;
+    cursor: pointer;
+}
+
+.erroricon i:hover{
+    color: #dd543c;
+}
+
+.warnicon{
+    color: #f5b00b;
+    text-align: center;
+    cursor: pointer;
+}
+
+.warnicon i:hover{
+    color: #f8c751;
+}
+
+.allminionsicon{
+    color: #263549;
+    text-align: center;
+    cursor: pointer;
+}
+
+.allminionsicon i:hover{
+    color: #253c5a;
+}
+
+.minion-number-col{
+    width:40%;
+    float:left; 
+ 
+}
+
+ .minion-message-col{
+    width:50%;    
+    float:left; 
+ }
+
+ .minion-number{
+    overflow: hidden;
+    font-size: 4em;
+}
+
+.minion-message{
+    font-size: 1.2em; 
+    text-align: left;
+    font-weight: 600;
+}
+h1 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 3.5rem;
+}
+
+a.minionlink {
+    color: #27bdbe;
+    color: var(--cyan);
+ }
+
+ #minionOverview {
+    display: flex;
+}
+
+#carouselExampleControls {
+    display: none;
+}
+
+.carousel-control-next-icon, .carousel-control-prev-icon {
+    background-color: #021660;
+    background-color: var(--midnight-blue);
+}
+
+
+@media (max-width: 575px) {
+    .col-sm-4 {
+        width: auto;
+    }
+
+    .row {
+        flex-wrap: nowrap;
+    }
+    .minion-number {display: block;}
+
+    #minionOverview {
+        display: none;
+    }
+    #carouselExampleControls {
+        display: block;
+    }
+}
+    
+    @media (min-width: 576px) and (max-width: 767px) {
+
+        .minion-message, .view-now {display: block !important;}   
+        .minion-number {display: block;}
+        #minionOverview {display: flex;}
+        #carouselExampleControls {display: none;}   
+     }
+    
+    @media (min-width: 768px) and (max-width: 991px) {
+    main.container, .container.main {margin-left: auto;}
+    }
+    
+    @media (min-width: 992px) and (max-width: 1199px) {
+    main.container, .container.main {margin-left: auto;}
+    }
+    
+    @media (min-width: 1200px) {
+    main.container, .container.main {margin-left: 274px;}
+    }

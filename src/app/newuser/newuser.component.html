@@ -1,0 +1,72 @@
+<div class="container p-3" >
+    
+  <div class="card bg-light">
+
+  <article class="card-body mx-auto" style="max-width: 450px;">
+
+  <form [formGroup]="createUserForm" name="createNewUser" (ngSubmit)="createNewUser()" >
+    <div class="form-group input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><i class="material-icons">person</i></span>
+      </div>
+      <label class="sr-only" for="FirstName">First name:</label>
+      <input class="form-control" type="text" placeholder="First name" formControlName="FirstName" id="firstname" [ngClass]="{ 'is-invalid': submitted && f.FirstName.errors }"/>
+      <label class="sr-only" for="Surname">Surname:</label>     
+      <input class="form-control" type="text" placeholder="Surname" formControlName="Surname" id="surname" style="margin-left:10px" [ngClass]="{ 'is-invalid': submitted && f.Surname.errors }"/>
+      <div *ngIf="submitted && f.FirstName.errors" class="invalid-feedback">
+          <div *ngIf="f.FirstName.errors.required">First name is required</div>
+          <div *ngIf="f.FirstName.errors.pattern">First name cannot contain numbers or special characters</div>
+      </div>
+      <div *ngIf="submitted && f.Surname.errors" class="invalid-feedback" >
+          <div *ngIf="f.Surname.errors.required">Surname is required</div>
+          <div *ngIf="f.Surname.errors.pattern">Surname cannot contain numbers or special characters </div>
+      </div>
+    </div>
+    <div class="form-group input-group">
+      <label class="sr-only" for="Email">Email address:</label>
+      <div class="input-group-prepend" >
+        <span class="input-group-text"><i class="material-icons">mail</i></span>
+      </div>
+      <input class="form-control" type="email" placeholder="Email address" formControlName="Email" id="email" [ngClass]="{ 'is-invalid': submitted && f.Email.errors }"/>
+      <div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
+          <div *ngIf="f.Email.errors.required">Email is required</div>
+          <div *ngIf="f.Email.errors.email">Email must be a valid email address</div>
+      </div>
+    </div>    
+    <div class="form-group input-group">
+      <label class="sr-only" for="Mobile">Mobile phone no:</label>
+      <div class="input-group-prepend" >
+        <span class="input-group-text"><i class="material-icons">phone</i></span>
+      </div>
+      <input class="form-control" type="text" placeholder="Mobile phone number" formControlName="Mobile" />
+    </div>
+    <div class="form-group input-group">
+      <label class="sr-only" for="UserRoleId">User role:</label>
+      <div class="input-group-prepend" >
+        <span class="input-group-text"><i class="material-icons">group</i></span>
+      </div>
+      <select class="form-control"  formControlName="UserRoleId" id="role" [ngClass]="{ 'is-invalid': submitted && f.UserRoleId.errors }">
+        <option selected value="">Select role type</option>
+        <option value="4">View Only</option>
+        <option value="3">Support</option>
+        <option value="2">Support Plus</option>
+        <option value="1">DevOps</option>
+      </select>
+      <div *ngIf="submitted && f.UserRoleId.errors" class="invalid-feedback">
+          <div *ngIf="f.UserRoleId.errors.required">A role must be selected</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="submit" id="addNewUserButton" class="btn btn-info btn-block" >Create User</button>
+    </div>
+    <div class="form-group">
+      <div id="login-error"></div>
+    </div>
+  </form>
+  
+</article>
+
+</div>
+
+</div>
+

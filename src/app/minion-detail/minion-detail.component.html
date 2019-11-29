@@ -1,0 +1,129 @@
+<div *ngIf="details">
+  <div class="container spaced">
+      <div class="page-header">
+      <h5>Minion details</h5>
+    </div>
+
+    <!-- <div class="spinner-border text-info m-3" role="status" >
+        <span class="sr-only">Scheduling command...</span>
+    </div> -->
+
+    <div style="margin-top: 20px; margin-bottom: 30px;display: none;" class="alert {{saveResult.ResultClass}} alert-dismissible fade show" role="alert" >
+        <h4 class="alert-heading">
+            <mat-icon class="material-icons smart" role="img" aria-hidden="true">{{saveResult.ResultIcon}}</mat-icon>{{saveResult.ResultHeader}}</h4>
+            <hr>
+            {{saveResult.ResultMessage}}
+       <div *ngFor="let err of saveResult.ResultErrors">{{err}}</div>
+      </div>
+      <form>
+        <table class="table table-hover table-border table-sm">
+          <tbody>
+            <tr>
+              <th class="first-col" scope="row">Site ID: </th>
+              <td>
+                  <input type="text" id="SiteId" class="site" name="siteID" value="{{details.SiteId}}" [(ngModel)]="details.SiteId" disabled="disabled" title="Tap edit below to update" autocomplete="new-password">
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Site Name: </th>
+              <td><input type="text" id="SiteName" class="site" name="siteName" value="{{details.SiteName}}" [(ngModel)]="details.SiteName" disabled="disabled" title="Tap edit below to update" autocomplete="new-password"></td>
+            </tr>
+            <tr>
+              <th scope="row">Server Name: </th>
+              <td>{{details.ServerName}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Operating System: </th>
+              <td>{{details.OperatingSystem}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Minion Version: </th>
+              <td>{{details.MinionVersion}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Status: </th>
+              <td><span class="minion-status-icon align-middle {{details.Status}}"></span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h5>Mobile subscriptions</h5>
+        <table  style="margin-bottom: 30px;" class="table table-hover table-border table-sm">
+          <tbody>
+            <tr>
+              <th class="first-col" scope="col">Maximum available</th>
+              <td>
+                
+                <input type="number" id="MobileSubscriptions" class="mob" name="MobileSubscriptions" value="{{details.MobileSubscriptions}}" [(ngModel)]="details.MobileSubscriptions" disabled="disabled" title="Please check that mobile subscription is enabled before changing." autocomplete="new-password">
+                <div style="width: 224px;" class="toggle invalid-feedback">
+                Please check that mobile subscription is enabled before changing.
+                </div>
+              </td>         
+            </tr>
+            <tr>
+              <th>Active:</th>
+              <td>{{details.ActiveMobileUsers}}</td>
+            </tr>
+            <tr>
+              <th>Remaining:</th>
+              <td>{{details.MobileSubscriptions - details.ActiveMobileUsers}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                PIMS details
+            </mat-expansion-panel-header>
+            <div class="enclosing-div">
+            <div class="PIMS">
+              <table  class="table table-hover table-border table-sm">
+                <tbody>
+                  <tr>
+                      <th class="first-col" scope="col">Name</th>
+                      <th scope="col">Version</th>
+                  </tr>
+                  <tr *ngFor="let am of details.ApplicationMetrics">
+                    <td>{{am.PIMSName}}</td>
+                    <td>{{am.PIMSVersion}}</td>
+                  </tr>
+                </tbody>
+              </table>            </div>
+          </div>
+          </mat-expansion-panel>
+        
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              {{details.ActiveMobileUsers}} Mobile user(s)
+            </mat-expansion-panel-header>
+            <div class="container scroll">
+              
+              <table class="table table-hover table-striped table-bordered table-sm" *ngIf="details.MobileUsers != null && details.MobileUsers.length > 0">
+                  <tbody>
+                    <tr>
+                        <th class="first-col" scope="col">Name</th>
+                        <th>Date Activated</th>
+                        <th>Date Deactivated</th>         
+                    </tr>
+                    <tr *ngFor="let mobileUser of details.MobileUsers">
+                      <td>{{mobileUser.MobileUsername}}</td>
+                      <td>{{mobileUser.ActivatedDate}}</td>
+                      <td>{{mobileUser.DecoupledDate}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>            
+          </mat-expansion-panel>
+        
+        </mat-accordion>
+
+        <div style="margin-top: 30px; margin-bottom: 30px;">
+          <button id="back" (click)="goBack()" title="Click to return to the previous page" class="btn btn-block btn-danger toggle">Back</button>
+          <button id="cancel" (click)="toggleElements()" title="Click to cancel edit" class="btn btn-block btn-danger toggle">Cancel</button>
+          <button id="edit" (click)="toggleElements(); focusSiteId" title="Click to edit Site Id and Site Name" class="btn btn-block btn-info next-btn toggle">Edit</button>
+          <button id="save" (click)="toggleElements(); editMinionDetails()" title="Click to save changes"class="btn btn-block btn-info next-btn toggle">Save</button>
+        </div>
+    </form>
+  </div>
+</div>

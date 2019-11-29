@@ -1,0 +1,261 @@
+main .container {
+  padding-bottom: 0 !important;
+}
+
+.container.scroll {
+max-height: 63vh;
+overflow: auto;
+}
+
+.card-columns {
+  margin-top: 10px;
+  column-count: 1;
+  orphans: 1;
+  widows: 1;
+} 
+
+.card-columns.one {column-count: 1;} 
+.card-columns.two {column-count: 1;} 
+.card-columns.three {column-count: 1;} 
+
+.card-columns .card {
+  display: inline-block;
+  width: 100%;
+}
+
+.alert-undefined {
+  color: white;
+  background-color: rgb(42, 143, 67);
+  margin-top: 30px !important;
+  border-color: rgb(42, 143, 67);
+}
+
+.form-group {
+  margin-bottom: 0.5rem;
+}
+
+.form-group.card {
+  border: 1px solid #6c757d;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
+  margin-inline-start: 2px;
+  margin-inline-end: 2px;
+  padding-block-start: 0.35em;
+  padding-inline-start: 0.75em;
+  padding-inline-end: 0.75em;
+  padding-block-end: 0.625em;
+  min-inline-size: min-content;      
+}
+
+.form-group.FilePath {
+  grid-column: 1 / 3 ;
+}
+
+legend {
+  padding-inline-start: 2px;
+  width: auto;
+  max-width: auto;
+  padding: auto;
+  margin-bottom: auto;
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: inherit;
+  color: inherit;
+  white-space: normal;
+}
+
+label {
+  font-size: 0.75rem;
+  margin-bottom: 0;
+  width: 119px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;    
+}
+
+label.check {
+  overflow: visible;
+  white-space: normal;
+}
+
+p {
+  font-size: 0.7rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-control, select {
+  font-size: 0.7rem;
+  border-radius: 0;
+  padding: 0.2rem;
+  line-height: 1;
+  height: auto;
+}
+
+.inner-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 5px;
+}
+
+.inner-grid.one {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+@media (max-width: 575px) {
+  label.check {
+      overflow: visible;
+      white-space: normal !important;
+  }
+}
+
+@media (min-width: 576px) and (max-width:767px) {
+
+.container.scroll {
+  max-height: 63vh;
+  overflow: auto;
+}
+
+.card-columns {
+  column-count: 1;
+  orphans: 1;
+  widows: 1;}
+
+  .card-columns.one {column-count: 1;} 
+  .card-columns.two {column-count: 1;} 
+  .card-columns.three {column-count: 1;} 
+  
+.inner-grid {
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 5px;
+}
+
+.inner-grid.one {
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-gap: 5px;
+}
+
+label.check {
+  overflow: visible;
+  white-space: normal;
+}
+.card-columns.one label {
+  width: 160px;
+}
+.card-columns.two label {
+  width: 150px;
+}
+
+.card-columns.three label {
+  width: 146px;
+}
+}
+@media (min-width: 768px) and (max-width: 991px) {
+
+.container.scroll {
+  max-height: 63vh;
+  overflow: auto;
+}
+
+.card-columns {
+  column-count: 2;
+  orphans: 1;
+  widows: 1;}
+
+.card-columns.one {column-count: 1;} 
+.card-columns.two {column-count: 1;} 
+.card-columns.three {column-count: 1;} 
+
+
+.inner-grid {
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 5px;
+}
+
+.inner-grid.one {
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-gap: 5px;
+}
+
+.card-columns.one label {
+  width: 240px;
+}
+.card-columns.two label {
+  width: 230px;
+}
+
+.card-columns.three label {
+  width: 237px;
+}
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+.container.scroll {
+  max-height: 63vh;
+  overflow: auto;
+}
+
+.card-columns {
+  column-count: 3;
+  orphans: 1;
+  widows: 1;
+}
+
+.card-columns.one {column-count: 1;} 
+.card-columns.two {column-count: 2;} 
+.card-columns.three {column-count: 3;} 
+
+.inner-grid {
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 5px;
+}
+ .inner-grid.one {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 5px;
+}      
+.card-columns.one label {
+  width: 370px;
+}
+.card-columns.two label {
+  width: 158px;
+}
+
+.card-columns.three label {
+  width: 85px;
+}
+}
+@media (min-width: 1200px){
+.container.scroll {
+  max-height: 65vh;
+  overflow: auto;
+}
+.inner-grid {
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 5px;
+}
+
+.inner-grid.one {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 5px;
+}  
+.card-columns {
+   column-count: 3;
+  orphans: 1;
+  widows: 1;
+  }
+
+  .card-columns.one {column-count: 1;} 
+  .card-columns.two {column-count: 2;} 
+  .card-columns.three {column-count: 3;} 
+  
+  .card-columns.one label {
+    width: 455px;
+}
+.card-columns.two label {
+    width: 202px;
+}
+
+.card-columns.three label {
+    width: 120px;
+}
+}

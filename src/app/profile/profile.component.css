@@ -1,0 +1,54 @@
+.directly-editable-inputs, .change-password-section {
+    margin-top:10px;
+    width: 80%;
+    min-width: 324px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.directly-editable-inputs div {
+    color: #000;
+}
+
+.directly-editable-inputs div input {
+    color: #000;
+}
+
+#mobileNumber:hover, #firstName:hover, #lastName:hover{
+    cursor: pointer;
+}
+
+.profile-form label {
+    margin-top: 15px;
+}
+
+.directly-editable-inputs div input:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: none;
+    border-radius: 0px;
+}
+
+.change-password-button {
+    display: block;
+}
+
+.profile-btn {
+    margin-top:10px;
+}
+
+.form-control {
+    cursor: pointer;
+}
+
+.first-name-error, .last-name-error, .mobile-number-error {
+    float: left;
+    color: #F00 !important;
+    position: relative;
+    top:-1rem;
+    font-size: 0.9em;
+}
+
+.error-input {
+    border-color: #F00;
+}

@@ -1,0 +1,49 @@
+  <div id="carouselExampleControls" class='container-fluid'>  
+    <div class="col-12 py-5" >  
+        <ngb-carousel [showNavigationArrows]="showNavigationArrows" [showNavigationIndicators]="showNavigationIndicators" style="height: 290px;">  
+            <ng-template ngbSlide>  
+                <div class="erroricon" routerLink="/minions" (click)="setRed()">
+                    <div class="col-sm-12">
+                      <i class="material-icons">error</i>
+                    </div>
+                    <div class="col-sm-12 total-minions">
+                      <div class="text-center minion-number">{{summary.MinionsOnRed}}</div>
+                      <div class="text-center minion-message"> Red issues</div>
+                    </div>
+                    <div class="col-sm-12 view-now p-1" >
+                      <div><a class="minionlink" routerLink="/minions" (click)="setRed()">View Now</a></div>
+                    </div>
+                </div>
+            </ng-template>  
+            <ng-template ngbSlide>  
+                <div class="warnicon" routerLink="/minions" (click)="setAmber()">
+                    <div class="col-sm-12">
+                      <i class="material-icons">warning</i>
+                    </div>
+                  <div class="col-sm-12 total-minions" >
+                    <div class="text-center minion-number">{{summary.MinionsOnAmber}}</div>
+                    <div class="text-center minion-message">Amber issues</div>
+                  </div>
+                  <div class="col-sm-12 view-now p-1">
+                      <div><a class="minionlink" routerLink="/minions" (click)="setAmber()">View Now</a></div>
+                </div>
+              </div>
+            </ng-template>  
+            <ng-template ngbSlide>  
+                <div class="allminionsicon" routerLink="/minions" (click)="setTotal()">
+                    <div class="col-sm-12">
+                      <i class="material-icons" >dns</i>
+                    </div>
+                    <div class="col-sm-12 total-minions" >
+                      <div class="text-center minion-number">{{summary.TotalMinions}}</div>
+                      <div class="text-center minion-message">Total installed</div>
+                    </div>
+                    <div class="col-sm-12 view-now p-1">
+                        <div><a class="minionlink" routerLink="/minions" (click)="setTotal()">View Now</a></div>
+                  </div>
+                </div>
+            </ng-template>  
+        </ngb-carousel>  
+    </div>  
+  
+</div>  
