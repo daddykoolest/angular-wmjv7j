@@ -1,0 +1,42 @@
+<nav id="mySidenav" class="sidenav" role="navigation">
+    <div id="profile">
+      <a href="javascript:void(0)" class="closebtn" ><i class="material-icons">close</i></a>
+    </div>
+    <div class="desktop">
+    <a class="nav-link" routerLink="/" routerLinkActive="active" >Home</a>
+    <a class="nav-link" routerLink="/minions" routerLinkActive="active" (click)="prepMinions()">Minions</a>
+    <a class="nav-link" routerLink="/create-command" routerLinkActive="active" >Commands</a>
+    <a class="nav-link" routerLink="/schedule" routerLinkActive="active" >Schedule</a>
+    <a *ngIf="userRole === 1" class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
+    <!-- <app-logout></app-logout> -->
+</div>
+<div class="mobile">
+    <a class="nav-link" routerLink="/" routerLinkActive="active" (click)="closeNav()">Home</a>
+    <a class="nav-link" routerLink="/minions" routerLinkActive="active" (click)="prepMinions(); closeNav()">Minions</a>
+    <a class="nav-link" routerLink="/create-command" routerLinkActive="active"  (click)="closeNav()">Commands</a>
+    <a class="nav-link" routerLink="/schedule" routerLinkActive="active" (click)="closeNav()">Schedule</a>
+    <a *ngIf="userRole === 1" class="nav-link" routerLink="/admin" routerLinkActive="active"   (click)="closeNav()">Admin</a>
+    <!-- <app-logout></app-logout> -->
+</div>
+
+    <div id="bottomblue" class="fixed-bottom bottomblue" [ngClass]="{'minions':location.path() === '/minions','schedules':location.path() === '/schedule', 'command':location.path() === '/create-command'}">
+      <a id="footerprofile" class="nav-link" routerLink="/profile" routerLinkActive="active">
+        <i class="material-icons person-icon d-inline">person</i>
+        {{userName}}</a>
+      </div>
+  </nav>
+
+<header class='navbar top-bar navbar-nav-scroll' (window:resize)="onResize($event)"[ngClass]="{'minions':location.path() === '/minions','schedules':location.path() === '/schedule', 'command':location.path() === '/create-command'}">
+  <div class="align-middle">
+    <a id="headerprofile" class="nav-link" routerLink="/profile" routerLinkActive="active">
+      <i class="material-icons person-icon d-inline">person</i>
+        {{userName}}
+    </a>
+    <span id="openMenu" class="menu" (click)="openNav()"><i class="material-icons">menu</i></span>
+    <span id="closeMenu" style="display: none;" class="menu" (click)="closeNav()"><i class="material-icons">menu</i></span>
+  </div>
+    
+  <a class="navbar-brand" title="return to dashboard" routerLink="/" routerLinkActive="active">
+    <img class="logo" src="assets/covetrus_logo_1c_rev.png">
+  </a>
+</header>
