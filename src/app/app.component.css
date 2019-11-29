@@ -1,0 +1,89 @@
+p {
+  font-family: Lato;
+}
+
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before {
+  bottom: .5em;
+}
+
+#dtBasicExample td + td + td + td {
+  width: calc(100%/4);
+}
+
+#search-input {
+  width: auto; margin-left: .5rem; display: inline-block;
+}
+#search-label {
+  text-align: left;
+  font-weight: 400;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
+
+.dataTables_filter {
+  text-align: right;
+}
+#back, #cancel, #edit, #new, #save {
+  width:50%;
+  display: inline-block;
+}
+
+#cancel, #edit, #save {
+  margin-top: 0;
+}
+
+#save, #cancel, .alert {
+  display: none;
+}
+/* #example td+td+td+td {
+  width: calc(100%/4);
+} */
+
+.sticky-top {
+  background-color: white !important;
+}
+
+.dataTables_filter {
+  text-align: right;
+}
+
+/* .minionList {
+  width: 245px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+} */
+
+@media (max-width: 575px) {
+  .dataTables_filter, .scheduleTotal {
+    text-align: center;
+  }
+}
+  @media (min-width: 576px) and (max-width: 767px) {
+    .dataTables_filter, .scheduleTotal {
+      text-align: center;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 991px) {
+    .dataTables_filter {
+      text-align: right;
+    }
+  }
+  
+  @media (min-width: 992px) and (max-width: 1199px) {
+    .dataTables_filter {
+      text-align: right;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .dataTables_filter {
+      text-align: right;
+    }
+  }

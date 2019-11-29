@@ -1,0 +1,49 @@
+<!-- <app-navigation *ngIf="isNavigablePage()"> 
+  
+  <main role="main" class="container">
+<router-outlet></router-outlet>
+</main>
+  
+  -->
+<app-navigation></app-navigation>
+
+<div class="container spaced p-0" id="minionFilters">
+    <h1 class="text-center mt-5 mb-3">Schedules</h1>
+
+    <div class="container">
+        <div class="row">
+            <div class="scheduleTotal col-md-6"><p id="scheduleTotal" style="font-size: 1.3rem;">{{ rowCount }} Schedules available</p></div>
+            <div class="dataTables_filter col-md-6">
+                <label for="search-input" id="search-label">Search</label>
+                <input title="Enter a search term or terms separated by a space, to filter the table" type="search-input" [(ngModel)]="searchText" (keyup)="searchItems()" class="form-control form-control-sm" id="search-input" mdbInput>
+            </div>
+        </div>
+
+      <table mdbTable mdbTableScroll scrollY="true" maxHeight="415"  stickyHeader="true" small="true" hover="true" bordered="true" striped="true" #tableEl="mdbTable" class="z-depth-0" id="example">
+        <thead class="sticky-top">
+          <tr>
+            <th *ngFor="let head of headTitles; let i = index" title="Click to sort by {{head | titlecase}}" aria-controls="example" [mdbTableSort]="schedules" [sortBy]="headElements[i]"
+            scope="col" style="width: 25%; white-space: nowrap;">{{head | titlecase}} <mdb-icon fas icon="sort"></mdb-icon>
+        </th>
+          </tr>
+        </thead>
+        <tbody>
+              <tr mdbTableCol *ngFor="let schedule of schedules; let i = index">
+                <td>
+                  <div [ngSwitch]="schedule.CombinedStatus">
+                      <mdb-icon *ngSwitchCase="'running'" far icon="smile" size="lg" title="{{schedule.CombinedStatus}}" class="green-text {{schedule.CombinedStatus}}"></mdb-icon>
+                      <mdb-icon *ngSwitchCase="'finished'" far icon="hand-paper" size="lg" title="{{schedule.CombinedStatus}}" class="red-text {{schedule.CombinedStatus}}"></mdb-icon>
+                      <mdb-icon *ngSwitchDefault far icon="frown" size="lg" title="{{schedule.CombinedStatus}}" class="orange-text {{schedule.CombinedStatus}}"></mdb-icon>
+                    </div>
+                </td>
+                <td>{{schedule.ScheduleDate}}</td>
+                <td>{{schedule.CommandGroupName}}</td>
+                <td><div class="minionList">{{schedule.MinionList}}</div></td>
+              </tr>
+            </tbody>
+      </table>
+
+  <div>
+    <button id="back" (click)="goBack()" title="Click to return to the previous page" class="btn btn-block btn-danger toggle">Back</button>
+    <button id="new" title="Click to add a new schedule" class="btn btn-block btn-info next-btn toggle">New</button>
+  </div>  
