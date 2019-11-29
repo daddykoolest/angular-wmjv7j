@@ -1,0 +1,115 @@
+#searchBar {
+border: 1px solid #263549;
+border-radius: .0;
+width: 100%;
+margin-left: auto;
+margin-right: auto;
+cursor: text;
+}
+
+#searchBarResults {
+    width: 80%;
+    margin-left: 10%;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid rgba(0,0,0,.125);
+    position: absolute;
+    z-index: 1;
+}
+
+#searchBarResults .list-group-item {
+    border-radius: 0px;
+    padding: .50rem 1.25rem;
+    border: 0px;
+}
+
+#searchBarResults .list-group-item:hover {
+    background-color: #E0E0E0;
+}
+
+#searchBarResults .minion-status-icon {
+    height: 1.2em;
+    width: 1.2em;
+    border-radius: 50%;
+    display: inline-block;
+    margin: -3px 3px 0px 0px;
+}
+
+.cursor {
+    position: relative;
+    width: 50%; 
+    margin-left: auto; 
+    margin-right: auto;
+}
+.cursor	i {
+	position: absolute;
+	width: 1px;
+	height: 80%;
+	background-color: gray;
+	left: 5px;
+	top: 10%;
+	animation-name: blink;
+	animation-duration: 800ms;
+	animation-iteration-count: infinite;
+	opacity: 1;
+}
+
+.cursor input:focus + i {
+	display: none;
+}
+
+@keyframes blink {
+	from { opacity: 1; }
+	to { opacity: 0; }
+}
+
+
+
+@media (max-width: 1024px) {
+    #searchBar {
+      border: 1px solid #263549;
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    #searchBarResults {
+      border: 0px solid #ffffff;
+      max-height: auto;
+      margin-left: 2px;
+      width: 100%;
+      overflow-y: inherit;
+    }
+
+    #searchBarResults .list-group-item {
+        background-color: white;
+        border-left: 1px solid grey;
+        border-right: 1px solid grey;
+        z-index: 2000;
+        }
+}
+
+
+@media (max-width: 575px) {
+    #searchBar {margin-left: auto;}
+    .cursor {width: 100%; margin-left: auto;}
+    }
+    
+    @media (min-width: 576px) and (max-width: 767px) {
+        #searchBar {margin-left: auto;}
+        .cursor {width: 100%; margin-left: auto;}
+    }
+    
+    @media (min-width: 768px) and (max-width: 991px) {
+        #searchBar {margin-left: auto;}
+        .cursor {width: 100%; margin-left: auto;}
+    }
+    
+    @media (min-width: 992px) and (max-width: 1199px) {
+        #searchBar {margin-left: auto; width: 100%;}
+        .cursor {width: 80%; margin-left: auto;}
+    }
+    
+    @media (min-width: 1200px) {
+        #searchBar {margin-left: auto;}
+        .cursor {width: 45%; margin-left: auto;}
+    }

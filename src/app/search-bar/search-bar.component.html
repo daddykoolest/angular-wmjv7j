@@ -1,0 +1,36 @@
+ <div class="container main">
+<div class="cursor">
+  <input type="text" class="form-control rq-form-element" placeholder="Search for a minion" #searchBar id="searchBar" (input)="search(searchBar.value)" autofocus="true" tabindex="0" autocomplete="off"/>
+  <i></i>
+  </div>
+  <div *ngIf="minions$ | async as minions else loading" style="position: relative;margin-left: 10px;margin-right: 10px;">
+        <ng-container *ngIf="minions.length > 0; else noResults">
+          <ul class="list-group" id="searchBarResults">
+            <li class="list-group-item" *ngFor="let minion of minions">
+              <div id="minion.MinionId" class="align-middle" routerLink="/minion/{{minion.MinionId}}" (click)='searchBar.value = ""; search(searchBar.value);'>
+                <span class="minion-status-icon align-middle {{minion.Status}}"></span> 
+                {{minion.SiteName}} | {{minion.SiteId}}
+              </div>
+            </li>
+          </ul>
+        </ng-container>
+        <ng-template #noResults>
+          <ul class="list-group" id="searchBarResults" style="border: none;">
+            <li class="list-group-item" *ngIf="searchBar.value.length > 1">
+              no matches found for {{searchBar.value}}
+            </li>
+          </ul>
+        </ng-template>
+        <ng-template #loading>
+          <div *ngIf="searchBar.value.length > 1">
+              <ul class="list-group" id="searchBarResults">
+                <li class="list-group-item">
+                    <div class="spinner-border spinner-border-sm" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </li>
+            </ul>
+          </div>
+      </ng-template>
+    </div>
+</div>
